@@ -58,7 +58,7 @@ let menuList = reactive([
     children: [
       {
         path: "/userList",
-        component: "/system/User/UserList",
+        component: "/system/user/UserList",
         name: "userList",
         meta: {
           title: "员工管理",
@@ -68,7 +68,7 @@ let menuList = reactive([
       },
       {
         path: "/roleList",
-        component: "/system/Role/RoleList",
+        component: "/system/role/RoleList",
         name: "roleList",
         meta: {
           title: "角色管理",
@@ -78,7 +78,7 @@ let menuList = reactive([
       },
       {
         path: "/menuList",
-        component: "/system/Menu/MenuList",
+        component: "/system/menu/MenuList",
         name: "menuList",
         meta: {
           title: "菜单管理",
@@ -100,7 +100,7 @@ let menuList = reactive([
     children: [
       {
         path: "/cardType",
-        component: "/member/CardType",
+        component: "/member/type/CardType",
         name: "cardType",
         meta: {
           title: "会员卡类型",
@@ -110,7 +110,7 @@ let menuList = reactive([
       },
       {
         path: "/memberList",
-        component: "/member/MemberList",
+        component: "/member/list/MemberList",
         name: "memberList",
         meta: {
           title: "会员管理",
@@ -120,7 +120,7 @@ let menuList = reactive([
       },
       {
         path: "/myFee",
-        component: "/system/FeeList",
+        component: "/member/fee/FeeList",
         name: "myFee",
         meta: {
           title: "我的充值",
