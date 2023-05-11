@@ -1,6 +1,12 @@
+import { ref } from "vue";
+
 export default function useRole() {
+  //新增弹框的Ref属性
+  const addRef = ref<{ show: () => void }>();
   //新增
-  const addBtn = () => {};
+  const addBtn = () => {
+    addRef.value?.show()
+  };
   //编辑
   const editBtn = () => {};
   //删除
@@ -9,5 +15,6 @@ export default function useRole() {
     addBtn,
     editBtn,
     deleteBtn,
+    addRef,
   };
 }
