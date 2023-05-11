@@ -41,6 +41,7 @@ import useDialog from "@/hooks/useDialog";
 import { reactive, ref } from "vue";
 import { FormInstance } from "element-plus";
 import { addApi } from "@/api/role/index";
+import { ElMessage } from "element-plus";
 //表单的Ref属性
 const addFormRef = ref<FormInstance>();
 //弹框属性
@@ -51,6 +52,8 @@ const show = () => {
   dialog.width = 630;
   dialog.title = "新增";
   dialog.visible = true;
+  //输入数据，清空上次提交数据
+  addFormRef.value?.resetFields()
 };
 //暴露子组件的方法给外部使用（父组件）
 defineExpose({
@@ -73,6 +76,8 @@ const rules = reactive({
     },
   ],
 });
+//注册事件
+const emit = defineEmits(['refresh'])
 //表单提交 
 const commit = () => {
   //表单验证规则 1.表单需要添加ref属性，2.item上面需要添加prop属性 3.定义表单验证规则
@@ -80,6 +85,9 @@ const commit = () => {
     if (valid) {
       let res = await addApi(addModel);
       if (res && res.code == 200) {
+        ElMessage.success(res.msg)
+        //调用父组件的方法，刷新列表
+        emit('refresh')
         dialog.visible = false;
       }
     }

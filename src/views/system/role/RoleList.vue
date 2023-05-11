@@ -10,12 +10,36 @@
       </el-form-item>
       <el-form-item>
         <el-button @click="searchBtn" :icon="Search">搜索</el-button>
-        <el-button @click="resetBtn" :icon="Close" type="danger" plain>重置</el-button>
+        <el-button @click="resetBtn" :icon="Close" type="danger" plain
+          >重置</el-button
+        >
         <el-button type="primary" @click="addBtn" :icon="Plus">新增</el-button>
       </el-form-item>
     </el-form>
+    <!-- 表格 -->
+    <el-table :height="tableHeight" :data="tableList.List" border stripe>
+      <el-table-column prop="roleName" label="角色名称"> </el-table-column>
+      <el-table-column prop="remark" label="角色描述"> </el-table-column>
+      <el-table-column label="操作" width="220" align="center">
+        <template #default="scope">
+          <el-button type="primary" :icon="Edit" size="default" @click="editBtn">编辑</el-button>
+          <el-button type="danger" :icon="Delete" size="default" @click="deleteBtn">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <!-- 分页 -->
+    <el-pagination
+      @size-change="sizeChange"
+      @current-change="currentChange"
+      :current-page.sync="listParm.currentPage"
+      :page-sizes="[10, 20, 40, 80, 100]"
+      :page-size="listParm.pageSize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="listParm.total" background>
+    </el-pagination>
+    
     <!-- 新增、编辑弹框 -->
-    <role-add ref="addRef"></role-add>
+    <role-add ref="addRef" @refresh="refresh"></role-add>
   </el-main>
 </template>
 
@@ -24,8 +48,9 @@ import RoleAdd from "./RoleAdd.vue";
 import { Plus, Edit, Delete, Search, Close } from "@element-plus/icons-vue";
 import useTable from "@/composables/role/useTable";
 import useRole from "@/composables/role/useRole";
+
 //表格相关业务
-const { listParm, getList, searchBtn, resetBtn } = useTable();
+const { listParm, getList, searchBtn, resetBtn, tableList, sizeChange, currentChange, tableHeight, refresh } = useTable();
 //增删改查业务
 const { addBtn, editBtn, deleteBtn, addRef } = useRole();
 </script>
