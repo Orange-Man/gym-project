@@ -12,6 +12,9 @@ import { createPinia } from 'pinia'
 //实例化Pinia
 const pinia = createPinia()
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+//信息确认框
+import myconfirm from './utils/myconfirm'
+import objCoppy from './utils/objCoppy'
 const app = createApp(App);
 app.use(router).use(ElementPlus, {
   locale: zhCn,
@@ -21,3 +24,6 @@ app.mount('#app')
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
+//全局挂载
+app.config.globalProperties.$myconfirm = myconfirm
+app.config.globalProperties.$myconfirm = objCoppy
