@@ -22,8 +22,8 @@
       <el-table-column prop="remark" label="角色描述"> </el-table-column>
       <el-table-column label="操作" width="220" align="center">
         <template #default="scope">
-          <el-button type="primary" :icon="Edit" size="default" @click="editBtn">编辑</el-button>
-          <el-button type="danger" :icon="Delete" size="default" @click="deleteBtn">删除</el-button>
+          <el-button type="primary" :icon="Edit" size="default" @click="editBtn(scope.row)">编辑</el-button>
+          <el-button type="danger" :icon="Delete" size="default" @click="deleteBtn(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -52,7 +52,7 @@ import useRole from "@/composables/role/useRole";
 //表格相关业务
 const { listParm, getList, searchBtn, resetBtn, tableList, sizeChange, currentChange, tableHeight, refresh } = useTable();
 //增删改查业务
-const { addBtn, editBtn, deleteBtn, addRef } = useRole();
+const { addBtn, editBtn, deleteBtn, addRef } = useRole(getList);
 </script>
 
 <style scoped lang="scss"></style>

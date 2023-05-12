@@ -26,4 +26,4 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 //全局挂载
 app.config.globalProperties.$myconfirm = myconfirm
-app.config.globalProperties.$myconfirm = objCoppy
+app.config.globalProperties.$objCoppy = objCoppy
